@@ -13,6 +13,7 @@ datasource db {
 model Countries {
   id     String    @id @default(cuid())
   name   String
+  cities Cities[]
 }
 
 model Cities {
@@ -20,6 +21,7 @@ model Cities {
   name       String
   country      Countries     @relation(fields: [country_Id], references: [id])
   country_Id   String
+  localidades  Localidades[]
 }
 
 model Localidades {
@@ -27,17 +29,21 @@ model Localidades {
   name      String
   city      Cities  @relation(fields: [city_Id], references: [id])
   city_Id   String
+  ubications Ubications[]
 }
 
 model Ubications {
   id        String @id @default(cuid())
   localidad Localidades @relation(fields: [localidad_Id], references: [id])
   localidad_Id String
+  client    clients[]
+  restaurant Restaurants[]
 }
 
 model Categories{
   id        String @id @default(cuid())
   name      String
+  foods     Foods[]
 }
 
 model Foods{
@@ -46,6 +52,7 @@ model Foods{
   category      Categories @relation(fields: [category_Id], references: [id])
   category_Id   String
   calification  String
+  restaurant    Restaurants[]
 }
 
 model clients{
@@ -54,11 +61,13 @@ model clients{
   direccion     String
   ubication     Ubications @relation(fields: [ubication_Id], references: [id])
   ubication_Id  String
+  pedidos       Pedidos[]
 }
 
 model Admins{
   id    String @id @default(cuid())
   name  String
+  restaurant Restaurants[]
 }
 
 model Restaurants{
@@ -71,6 +80,7 @@ model Restaurants{
   ubication_Id  String
   admin         Admins @relation(fields: [admin_Id], references: [id])
   admin_Id      String
+  pedidos       Pedidos[]
 }
 
 model Details{
@@ -78,6 +88,7 @@ model Details{
   date          String @unique
   asistentes    String
   hora          String
+  pedidos       Pedidos[]
 }
 
 model Pedidos{
