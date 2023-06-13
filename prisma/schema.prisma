@@ -9,3 +9,83 @@ datasource db {
   provider = "postgresql"
   url      = env("DATABASE_URL")
 }
+
+model Countries {
+  id     String    @id @default(cuid())
+  name   String
+}
+
+model Cities {
+  id          String    @id @default(cuid())
+  name       String
+  country      Countries     @relation(fields: [country_Id], references: [id])
+  country_Id   String
+}
+
+model Localidades {
+  id        String @id @default(cuid())
+  name      String
+  city      Cities  @relation(fields: [city_Id], references: [id])
+  city_Id   String
+}
+
+model Ubications {
+  id        String @id @default(cuid())
+  localidad Localidades @relation(fields: [localidad_Id], references: [id])
+  localidad_Id String
+}
+
+model Categories{
+  id        String @id @default(cuid())
+  name      String
+}
+
+model Foods{
+  id            String @id @default(cuid())
+  name          String
+  category      Categories @relation(fields: [category_Id], references: [id])
+  category_Id   String
+  calification  String
+}
+
+model clients{
+  id            String @id @default(cuid())
+  name          String
+  direccion     String
+  ubication     Ubications @relation(fields: [ubication_Id], references: [id])
+  ubication_Id  String
+}
+
+model Admins{
+  id    String @id @default(cuid())
+  name  String
+}
+
+model Restaurants{
+  id            String @id @default(cuid())
+  name          String
+  direccion     String
+  food          Foods @relation(fields: [food_Id], references: [id])
+  food_Id       String
+  ubication     Ubications @relation(fields: [ubication_Id], references: [id])
+  ubication_Id  String
+  admin         Admins @relation(fields: [admin_Id], references: [id])
+  admin_Id      String
+}
+
+model Details{
+  id            String @id @default(cuid())
+  date          String @unique
+  asistentes    String
+  hora          String
+}
+
+model Pedidos{
+  id            String @id @default(cuid())
+  restaurant    Restaurants @relation(fields: [restaurant_Id], references: [id])
+  restaurant_Id String
+  detail        Details @relation(fields: [detail_Id], references: [id])
+  detail_Id     String
+  client        clients @relation(fields: [client_Id], references: [id])
+  client_Id     String
+}
