@@ -1,7 +1,7 @@
 import { PrismaClient } from "@prisma/client";
 import { AdminType } from "./admin";
 
-const prisma = PrismaClient();
+const prisma = new PrismaClient();
 
 export async function getAllAdmins() {
   const admins = await prisma.admins.findMany();

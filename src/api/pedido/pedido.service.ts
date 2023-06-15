@@ -1,7 +1,7 @@
 import { PrismaClient } from "@prisma/client";
 import { PedidoType } from "./pedido";
 
-const prisma = PrismaClient();
+const prisma = new PrismaClient();
 
 export async function getAllPedidos() {
   const pedidos = await prisma.pedidos.findMany();

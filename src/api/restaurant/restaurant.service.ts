@@ -1,7 +1,7 @@
 import { PrismaClient } from "@prisma/client";
 import { RestaurantType } from "./restaurant.type";
 
-const prisma = PrismaClient();
+const prisma = new PrismaClient();
 
 export async function getAllRestaurants() {
   const restaurants = await prisma.restaurants.findMany();

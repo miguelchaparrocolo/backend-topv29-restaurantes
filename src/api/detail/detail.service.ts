@@ -1,7 +1,7 @@
 import { PrismaClient } from "@prisma/client";
 import { DetailType } from "./detail";
 
-const prisma = PrismaClient();
+const prisma = new PrismaClient();
 
 export async function getAllDetails() {
   const details = await prisma.details.findMany();
