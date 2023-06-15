@@ -1,7 +1,7 @@
 import { PrismaClient } from "@prisma/client";
 import { ClientType } from "./client";
 
-const prisma = PrismaClient();
+const prisma = new PrismaClient();
 
 export async function getAllClients() {
   const clients = await prisma.clients.findMany();

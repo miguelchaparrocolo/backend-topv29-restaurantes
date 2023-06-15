@@ -1,7 +1,7 @@
 import { PrismaClient } from "@prisma/client";
 import { UbicationType } from "./ubication.type";
 
-const prisma = PrismaClient();
+const prisma = new PrismaClient();
 
 export async function getAllUbications() {
   const ubications = await prisma.ubications.findMany();
