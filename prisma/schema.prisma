@@ -118,6 +118,7 @@ model User {
   roles UserRole[]
 }
 
+//tabla role
 model Role {
   id        String     @id @default(cuid())
   name      String     @unique
