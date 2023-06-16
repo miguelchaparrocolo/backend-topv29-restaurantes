@@ -10,8 +10,11 @@ import clientRouter from './api/client';
 import detailRouter from './api/detail';
 import pedidoRouter from './api/pedido';
 import restaurantRouter from './api/restaurant';
+import userRouter from './api/user';
+
 
 function routes(app: Application) {
+  app.use('/api/users', userRouter);
   app.use('/api/cities', cityRouter);
   app.use('/api/countries', countryRouter);
   app.use('/api/locations', locationRouter);

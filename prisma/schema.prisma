@@ -17,9 +17,9 @@ model Countries {
 }
 
 model Cities {
-  id          String        @id @default(cuid())
+  id          String      @id @default(cuid())
   name        String
-  country     Countries     @relation(fields: [country_Id], references: [id])
+  country     Countries   @relation(fields: [country_Id], references: [id])
   country_Id  String
   localidades Locations[]
 }
@@ -99,4 +99,42 @@ model Pedidos {
   detail_Id     String
   client        clients     @relation(fields: [client_Id], references: [id])
   client_Id     String
+}
+
+model User {
+  id                   String    @id @default(cuid())
+  email                String    @unique
+  firstName            String
+  lastName             String
+  password             String
+  isActive             Boolean   @default(false)
+  avatar               String?
+  passwordResetToken   String?
+  passwordResetExpires DateTime?
+  createdAt            DateTime  @default(now())
+  updatedAt            DateTime  @updatedAt
+
+  // relations
+  roles UserRole[]
+}
+
+//tabla role
+model Role {
+  id        String     @id @default(cuid())
+  name      String     @unique
+  createdAt DateTime   @default(now())
+  updatedAt DateTime   @updatedAt
+  users     UserRole[]
+
+  // relations
+}
+
+model UserRole {
+  id String @id @default(cuid())
+
+  // relations
+  User   User?   @relation(fields: [userId], references: [id])
+  userId String?
+  Role   Role?   @relation(fields: [roleId], references: [id])
+  roleId String?
 }
