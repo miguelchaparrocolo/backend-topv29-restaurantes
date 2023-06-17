@@ -10,10 +10,15 @@ import { UserWithRoles } from '../api/user/user.types';
  * Attaches the user object to the request if authenticated
  * @returns RequestHandler
  */
-export function isAuthenticated() {
-    return compose([
-      async (req: AuthRequest, res: Response, next: any) => {
+export async function isAuthenticated(
+  req: AuthRequest,
+  res: Response,
+  next: any
+  ) {
+
+
         const token = req.headers?.authorization?.split(' ')[1];
+        console.log("ingresa")
 
         if (!token) {
           return res.status(401).json({ message: 'Unauthorized' });
@@ -33,17 +38,16 @@ export function isAuthenticated() {
 
         req.user = user;
 
-        return next();
-      },
-    ]);
-  }
+       next();
+      };
+
 
   /**
    * Checks if the user role meets the minimum requirements of the route
    * @param allowRoles Array of roles allowed to access the route
    * @returns RequestHandler
    */
-  export function hasRole(allowRoles: string[]) {
+ /* export function hasRole(allowRoles: string[]) {
     return compose([
       isAuthenticated(),
       (req: AuthRequest, res: Response, next: any) => {
@@ -59,4 +63,4 @@ export function isAuthenticated() {
         return next();
       },
     ]);
-  }
+  }*/
