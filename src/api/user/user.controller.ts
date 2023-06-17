@@ -4,7 +4,7 @@ import {
   createUser,
   deleteUser,
   getAllUser,
- //getUserByEmail,
+  getUserByEmail,
   getUserById,
   updateUser,
 } from './user.service';
@@ -52,7 +52,11 @@ export async function deleteUserHandler(req: Request, res: Response) {
     });
   }
 
-  // await deleteUser(id);
+   await deleteUser(id);
+  /* return res.status(200).json({
+    message: 'Delete user',
+  });*/
+
 
   return res.json(user);
 }
@@ -72,4 +76,8 @@ export async function updateUserHandler(req: Request, res: Response) {
   const updatedUser = await updateUser({ ...data, id });
 
   return res.json(updatedUser);
+
+
 }
+
+

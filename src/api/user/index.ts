@@ -1,4 +1,5 @@
 import { Router } from 'express';
+import { isAuthenticated, hasRole } from '../../auth/auth.controller';
 
 import {
   createUserHandler,
@@ -9,10 +10,11 @@ import {
 } from './user.controller';
 
 
+
 const router = Router();
 
 // /api/users -> GET
-router.get('/',getAllUserHandler);
+router.get('/',  getAllUserHandler);
 
 // /api/users -> POST
 router.post('/', createUserHandler);
@@ -21,7 +23,7 @@ router.post('/', createUserHandler);
 router.get('/:id', getUserHandler);
 
 // /api/users/:id -> DELETE
-router.delete('/:id', deleteUserHandler);
+router.delete('/:id',deleteUserHandler);
 
 // /api/users/:id -> PATCH
 router.patch('/:id', updateUserHandler);
