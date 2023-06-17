@@ -11,9 +11,11 @@ import detailRouter from './api/detail';
 import pedidoRouter from './api/pedido';
 import restaurantRouter from './api/restaurant';
 import userRouter from './api/user';
+import authLocalRouter from './auth/local';
 
 
 function routes(app: Application) {
+
   app.use('/api/users', userRouter);
   app.use('/api/cities', cityRouter);
   app.use('/api/countries', countryRouter);
@@ -26,6 +28,9 @@ function routes(app: Application) {
   app.use('/api/detail', detailRouter);
   app.use('/api/pedido', pedidoRouter);
   app.use('/api/restaurant', restaurantRouter);
+
+  //Auth
+  app.use('/auth/local',authLocalRouter);
 
 }
 

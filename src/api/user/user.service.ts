@@ -39,7 +39,7 @@ export async function getUserById(id: string) {
   return user;
 }
 
-/*export async function getUserByEmail(email: string) {
+export async function getUserByEmail(email: string) {
   const user = await prisma.user.findUnique({
     where: {
       email,
@@ -57,10 +57,9 @@ export async function getUserById(id: string) {
       },
     },
   });
-
   return user;
 }
-*/
+
 
 export async function deleteUser(id: string) {
   const user = await prisma.user.delete({
