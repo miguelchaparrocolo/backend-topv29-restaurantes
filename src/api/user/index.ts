@@ -1,5 +1,5 @@
 import { Router } from 'express';
-import { isAuthenticated } from '../../auth/auth.controller';
+import { isAuthenticated, hasRole } from '../../auth/auth.controller';
 
 import {
   createUserHandler,
@@ -14,13 +14,13 @@ import {
 const router = Router();
 
 // /api/users -> GET
-router.get('/', isAuthenticated, getAllUserHandler);
+router.get('/', isAuthenticated,hasRole(['ADMIN']), getAllUserHandler);
 
 // /api/users -> POST
 router.post('/', createUserHandler);
 
 // /api/users/:id -> GET
-router.get('/:id', getUserHandler);
+router.get('/:id',getUserHandler);
 
 // /api/users/:id -> DELETE
 router.delete('/:id',deleteUserHandler);

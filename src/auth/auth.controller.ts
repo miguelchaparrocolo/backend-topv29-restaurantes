@@ -47,20 +47,20 @@ export async function isAuthenticated(
    * @param allowRoles Array of roles allowed to access the route
    * @returns RequestHandler
    */
- /* export function hasRole(allowRoles: string[]) {
-    return compose([
-      isAuthenticated(),
-      (req: AuthRequest, res: Response, next: any) => {
-        const { roles } = req.user as UserWithRoles;
-        console.log('hasRole',roles)
-        const userRoles = roles.map(({ role }: any) => role.name); // ['ADMIN','ADMINRESTAURANT','CUSTUMER']
-        const hasPermission = allowRoles.some((role) => userRoles.includes(role)); // check if it finds the user
+ export function hasRole(allowRoles: string[]) {
 
-        if (!hasPermission) {
-          return res.status(403).json({ message: 'Forbidden' });
-        }
+    return (req: AuthRequest, res: Response, next: any) => {
+      console.log('allowroles',allowRoles)
+      const { roles } = req.user as UserWithRoles;
+      console.log('hasRole',roles); //revisar el typeof
+      const userRoles = roles.map(({ role }: any ) => role.name); // ['ADMIN','ADMINRESTAURANT','CUSTUMER']
+      console.log('userRoles',userRoles)
+      const hasPermission = allowRoles.some((role) => userRoles.includes(role)); // check if it finds the user
+      console.log(hasPermission);
+      if (!hasPermission) {
+        return res.status(403).json({ message: 'Forbidden' });
+      }
 
-        return next();
-      },
-    ]);
-  }*/
+      return next();
+      };
+      };

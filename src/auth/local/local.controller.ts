@@ -9,7 +9,6 @@ export async function loginHandler(req: Request, res: Response) {
 
   try {
     const user = await getUserByEmail(email);
-    console.log(user)
 
     if (!user) {
       return res.status(404).json({ message: 'User not found' });
