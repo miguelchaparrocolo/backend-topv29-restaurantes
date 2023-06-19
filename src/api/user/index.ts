@@ -14,13 +14,13 @@ import {
 const router = Router();
 
 // /api/users -> GET
-router.get('/',  getAllUserHandler);
+router.get('/', isAuthenticated,hasRole(['ADMIN']), getAllUserHandler);
 
 // /api/users -> POST
 router.post('/', createUserHandler);
 
 // /api/users/:id -> GET
-router.get('/:id', getUserHandler);
+router.get('/:id',getUserHandler);
 
 // /api/users/:id -> DELETE
 router.delete('/:id',deleteUserHandler);

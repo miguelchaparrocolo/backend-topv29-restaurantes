@@ -10,10 +10,15 @@ import { UserWithRoles } from '../api/user/user.types';
  * Attaches the user object to the request if authenticated
  * @returns RequestHandler
  */
-export function isAuthenticated() {
-    return compose([
-      async (req: AuthRequest, res: Response, next: any) => {
+export async function isAuthenticated(
+  req: AuthRequest,
+  res: Response,
+  next: any
+  ) {
+
+
         const token = req.headers?.authorization?.split(' ')[1];
+        console.log("ingresa")
 
         if (!token) {
           return res.status(401).json({ message: 'Unauthorized' });
@@ -33,30 +38,29 @@ export function isAuthenticated() {
 
         req.user = user;
 
-        return next();
-      },
-    ]);
-  }
+       next();
+      };
+
 
   /**
    * Checks if the user role meets the minimum requirements of the route
    * @param allowRoles Array of roles allowed to access the route
    * @returns RequestHandler
    */
-  export function hasRole(allowRoles: string[]) {
-    return compose([
-      isAuthenticated(),
-      (req: AuthRequest, res: Response, next: any) => {
-        const { roles } = req.user as UserWithRoles;
-        console.log('hasRole',roles)
-        const userRoles = roles.map(({ role }: any) => role.name); // ['ADMIN','ADMINRESTAURANT','CUSTUMER']
-        const hasPermission = allowRoles.some((role) => userRoles.includes(role)); // check if it finds the user
+ export function hasRole(allowRoles: string[]) {
 
-        if (!hasPermission) {
-          return res.status(403).json({ message: 'Forbidden' });
-        }
+    return (req: AuthRequest, res: Response, next: any) => {
+      console.log('allowroles',allowRoles)
+      const { roles } = req.user as UserWithRoles;
+      console.log('hasRole',roles); //revisar el typeof
+      const userRoles = roles.map(({ role }: any ) => role.name); // ['ADMIN','ADMINRESTAURANT','CUSTUMER']
+      console.log('userRoles',userRoles)
+      const hasPermission = allowRoles.some((role) => userRoles.includes(role)); // check if it finds the user
+      console.log(hasPermission);
+      if (!hasPermission) {
+        return res.status(403).json({ message: 'Forbidden' });
+      }
 
-        return next();
-      },
-    ]);
-  }
+      return next();
+      };
+      };
