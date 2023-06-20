@@ -11,92 +11,130 @@ datasource db {
 }
 
 model Countries {
-  id     String    @id @default(cuid())
+  id     String   @id @default(cuid())
   name   String
   cities Cities[]
 }
 
 model Cities {
-  id          String    @id @default(cuid())
-  name       String
-  country      Countries     @relation(fields: [country_Id], references: [id])
-  country_Id   String
-  localidades  Localidades[]
+  id          String      @id @default(cuid())
+  name        String
+  country     Countries   @relation(fields: [country_Id], references: [id])
+  country_Id  String
+  localidades Locations[]
 }
 
-model Localidades {
-  id        String @id @default(cuid())
-  name      String
-  city      Cities  @relation(fields: [city_Id], references: [id])
-  city_Id   String
+model Locations {
+  id         String       @id @default(cuid())
+  name       String
+  city       Cities       @relation(fields: [city_Id], references: [id])
+  city_Id    String
   ubications Ubications[]
 }
 
 model Ubications {
-  id        String @id @default(cuid())
-  localidad Localidades @relation(fields: [localidad_Id], references: [id])
+  id           String        @id @default(cuid())
+  localidad    Locations     @relation(fields: [localidad_Id], references: [id])
   localidad_Id String
-  client    clients[]
-  restaurant Restaurants[]
+  client       clients[]
+  restaurant   Restaurants[]
 }
 
-model Categories{
-  id        String @id @default(cuid())
-  name      String
-  foods     Foods[]
-}
-
-model Foods{
-  id            String @id @default(cuid())
-  name          String
-  category      Categories @relation(fields: [category_Id], references: [id])
-  category_Id   String
-  calification  String
-  restaurant    Restaurants[]
-}
-
-model clients{
-  id            String @id @default(cuid())
-  name          String
-  direccion     String
-  ubication     Ubications @relation(fields: [ubication_Id], references: [id])
-  ubication_Id  String
-  pedidos       Pedidos[]
-}
-
-model Admins{
-  id    String @id @default(cuid())
+model Categories {
+  id    String  @id @default(cuid())
   name  String
+  foods Foods[]
+}
+
+model Foods {
+  id           String        @id @default(cuid())
+  name         String
+  category     Categories    @relation(fields: [category_Id], references: [id])
+  category_Id  String
+  calification String
+  restaurant   Restaurants[]
+}
+
+model clients {
+  id           String     @id @default(cuid())
+  name         String
+  direccion    String
+  ubication    Ubications @relation(fields: [ubication_Id], references: [id])
+  ubication_Id String
+  pedidos      Pedidos[]
+}
+
+model Admins {
+  id         String        @id @default(cuid())
+  name       String
   restaurant Restaurants[]
 }
 
-model Restaurants{
-  id            String @id @default(cuid())
-  name          String
-  direccion     String
-  food          Foods @relation(fields: [food_Id], references: [id])
-  food_Id       String
-  ubication     Ubications @relation(fields: [ubication_Id], references: [id])
-  ubication_Id  String
-  admin         Admins @relation(fields: [admin_Id], references: [id])
-  admin_Id      String
-  pedidos       Pedidos[]
+model Restaurants {
+  id           String     @id @default(cuid())
+  name         String
+  direccion    String
+  food         Foods      @relation(fields: [food_Id], references: [id])
+  food_Id      String
+  ubication    Ubications @relation(fields: [ubication_Id], references: [id])
+  ubication_Id String
+  admin        Admins     @relation(fields: [admin_Id], references: [id])
+  admin_Id     String
+  pedidos      Pedidos[]
 }
 
-model Details{
-  id            String @id @default(cuid())
-  date          String @unique
-  asistentes    String
-  hora          String
-  pedidos       Pedidos[]
+model Details {
+  id         String    @id @default(cuid())
+  date       String    @unique
+  asistentes String
+  hora       String
+  pedidos    Pedidos[]
 }
 
-model Pedidos{
-  id            String @id @default(cuid())
+model Pedidos {
+  id            String      @id @default(cuid())
   restaurant    Restaurants @relation(fields: [restaurant_Id], references: [id])
   restaurant_Id String
-  detail        Details @relation(fields: [detail_Id], references: [id])
+  detail        Details     @relation(fields: [detail_Id], references: [id])
   detail_Id     String
-  client        clients @relation(fields: [client_Id], references: [id])
+  client        clients     @relation(fields: [client_Id], references: [id])
   client_Id     String
+}
+
+model User {
+  id                   String    @id @default(cuid())
+  email                String    @unique
+  firstName            String
+  lastName             String
+  password             String
+  isActive             Boolean   @default(false)
+  avatar               String?
+  passwordResetToken   String?
+  passwordResetExpires DateTime?
+  createdAt            DateTime  @default(now())
+  updatedAt            DateTime  @updatedAt
+
+  // relations
+  roles UserRole[]
+}
+
+//tabla role
+model Role {
+  id        String   @id @default(cuid())
+  name      String   @unique
+  createdAt DateTime @default(now())
+  updatedAt DateTime @updatedAt
+
+  // relations
+  users UserRole[]
+}
+
+model UserRole {
+  id String @id @default(cuid())
+
+  // relations
+  user   User   @relation(fields: [userId], references: [id])
+  userId String
+  role   Role   @relation(fields: [roleId], references: [id])
+  roleId String
 }
