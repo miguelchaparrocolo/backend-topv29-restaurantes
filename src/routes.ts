@@ -12,7 +12,7 @@ import pedidoRouter from './api/pedido';
 import restaurantRouter from './api/restaurant';
 import userRouter from './api/user';
 import authLocalRouter from './auth/local';
-
+import uploadRouter from './api/uploading'
 
 function routes(app: Application) {
 
@@ -28,6 +28,7 @@ function routes(app: Application) {
   app.use('/api/detail', detailRouter);
   app.use('/api/pedido', pedidoRouter);
   app.use('/api/restaurant', restaurantRouter);
+  app.use('/api/uploading', uploadRouter)
 
   //Auth
   app.use('/auth/local',authLocalRouter);
