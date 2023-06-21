@@ -28,6 +28,7 @@ export async function updateFoodById(id: string, data: FoodType) {
   const updatefood = await prisma.foods.update({
     where: { id },
     data,
+
   });
     return updatefood;
 }
