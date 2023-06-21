@@ -34,8 +34,8 @@ export async function loginHandler(req: Request, res: Response) {
       fullName: `${user.firstName} ${user.lastName}`,
       avatar: user.avatar,
       roles: user.roles.map(({ role }) => ({
-        id: role.id,
-        name: role.name,
+      id: role.id,
+      name: role.name,
       })),
 
     };
