@@ -1,5 +1,5 @@
 import { PrismaClient } from '@prisma/client';
-import { CityType } from './city.type';
+import { CityType } from './city';
 
 const prisma = new PrismaClient();
 

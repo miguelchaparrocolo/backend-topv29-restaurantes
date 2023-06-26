@@ -1,5 +1,5 @@
 import { PrismaClient } from '@prisma/client';
-import { CountryType } from './country.type';
+import { CountryType } from './country';
 
 const prisma = new PrismaClient();
 

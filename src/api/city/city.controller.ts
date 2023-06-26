@@ -33,7 +33,7 @@ export async function getCityByIdHandler(
   }
 }
 
-export async function createCitiesHandler(
+export async function createCityHandler(
   req: Request,
   res: Response,
   next: NextFunction
