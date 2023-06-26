@@ -33,7 +33,7 @@ export async function getCountryByIdHandler(
   }
 }
 
-export async function createCountriesHandler(
+export async function createCountryHandler(
   req: Request,
   res: Response,
   next: NextFunction
