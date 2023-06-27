@@ -46,6 +46,7 @@ model Restaurants {
   Categories   Categories? @relation(fields: [categoriesId], references: [id])
   categoriesId String?
   food         Foods[]
+  Reviews      Reviews[]
 }
 
 model Categories {
@@ -103,4 +104,13 @@ model UserRole {
   userId String
   role   Role   @relation(fields: [roleId], references: [id])
   roleId String
+}
+
+model Reviews {
+  id            String      @id @default(cuid())
+  rating        String
+  comment       String
+  createdAt     DateTime    @default(now())
+  Restaurants   Restaurants @relation(fields: [restaurantsId], references: [id])
+  restaurantsId String
 }
