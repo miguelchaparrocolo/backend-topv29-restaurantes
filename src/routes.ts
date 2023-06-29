@@ -22,7 +22,7 @@ function routes(app: Application) {
   app.use('/api/food', foodRouter)
   app.use('/api/detail', detailRouter);
   app.use('/api/pedido', pedidoRouter);
-  app.use('/api/restaurant', restaurantRouter);
+  app.use('/api/restaurants', restaurantRouter);
 
   //Auth
   app.use('/auth/local',authLocalRouter);
