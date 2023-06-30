@@ -1,46 +1,46 @@
 export const categorysSeeder = [
 
     {
-        id: '',
+        id: '1',
         name: 'Mexican',
     },
 
     {
-        id: '',
+        id: '2',
         name: 'Fast Food',
     },
 
 
     {
-        id: '',
+        id: '3',
         name: 'Asian',
     },
 
 
     {
-        id: '',
+        id: '4',
         name: 'Bakeries',
     },
 
     {
-        id: '',
+        id: '5',
         name: 'Bakeries',
     },
 
     {
-        id: '',
+        id: '6',
         name: 'Italian',
     },
 
 
     {
-        id: '',
+        id: '7',
         name: 'German',
     },
 
 
     {
-        id: '',
+        id: '8',
         name: 'Colombiana',
     },
 
