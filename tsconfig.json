@@ -108,5 +108,9 @@
   },
   "include": [
     "src/**/*"
-, "src/routes.ts", "app.ts"  ],
+, "src/routes.ts", "app.js"  ],
+"exclude": [
+  "src/**/*.test.ts"
+]
+
 }
