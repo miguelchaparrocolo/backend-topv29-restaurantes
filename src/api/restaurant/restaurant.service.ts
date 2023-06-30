@@ -12,7 +12,7 @@ export async function getAllRestaurants() {
           name: true,
           price: true,
           image: true,
-          qualification: true
+          rate: true
         }
       },
      Categories:{
