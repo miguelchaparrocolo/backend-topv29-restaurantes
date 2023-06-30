@@ -114,3 +114,8 @@ model Reviews {
   Restaurants   Restaurants @relation(fields: [restaurantsId], references: [id])
   restaurantsId String
 }
+
+model Payments {
+  id String @id @default(cuid())
+  
+}
