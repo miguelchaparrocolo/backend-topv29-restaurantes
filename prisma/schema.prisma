@@ -34,7 +34,7 @@ model Foods {
   name          String
   price         String
   image         String
-  qualification String
+  rate          String
   Restaurants   Restaurants? @relation(fields: [restaurantsId], references: [id])
   restaurantsId String?
 }
@@ -42,11 +42,14 @@ model Foods {
 model Restaurants {
   id           String      @id @default(cuid())
   name         String
-  direccion    String
+  schedules    String
+  foodtype     String
+  address      String
+  rating       String
+  logo         String
   Categories   Categories? @relation(fields: [categoriesId], references: [id])
   categoriesId String?
   food         Foods[]
-  Reviews      Reviews[]
 }
 
 model Categories {
@@ -107,12 +110,14 @@ model UserRole {
 }
 
 model Reviews {
-  id            String      @id @default(cuid())
-  rating        String
-  comment       String
-  createdAt     DateTime    @default(now())
-  Restaurants   Restaurants @relation(fields: [restaurantsId], references: [id])
-  restaurantsId String
+  id        String   @id @default(cuid())
+  comment   String
+  createdAt DateTime @default(now())
+}
+
+model Payments {
+  id String @id @default(cuid())
+  
 }
 
 model Payments {
