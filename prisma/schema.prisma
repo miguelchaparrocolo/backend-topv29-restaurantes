@@ -117,5 +117,11 @@ model Reviews {
 
 model Payments {
   id String @id @default(cuid())
-  
+  cardBrand String
+  cardNumber String
+  cardExpMonth String
+  cardExpYear String
+  cardCvc String
+  cardPostalCode String
+  userId String?
 }
