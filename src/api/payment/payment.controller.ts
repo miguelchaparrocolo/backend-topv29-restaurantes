@@ -12,11 +12,15 @@ export async function handlerPayment(
   const { amount, paymentMethod } = req.body;
 
   try {
+    console.log(
+      '🚀 ~ file: payment.controller.ts:16 ~ paymentMethod:',
+      paymentMethod
+    );
     const { id, card } = paymentMethod;
 
     const payment = await stripe.paymentIntents.create({
       amount,
-      paymentMethod: id,
+      payment_method: id,
       currency: 'usd',
       description: 'Food Delivery',
     });
@@ -24,7 +28,9 @@ export async function handlerPayment(
     const confirmPayment = await stripe.paymentIntents.confirm(payment.id);
 
     if (confirmPayment.status === 'succeeded') {
-      return res.status(200).json({ message: 'Payment successful' });
+      // await createPayments(payment);
+
+      return res.status(200).json({ message: 'Payment successful', payment });
     }
     return res.status(400).json({ message: 'Payment denied' });
   } catch (error) {

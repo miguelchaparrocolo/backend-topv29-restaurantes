@@ -24,7 +24,7 @@ function routes(app: Application) {
   app.use('/api/detail', detailRouter);
   app.use('/api/pedido', pedidoRouter);
   app.use('/api/restaurants', restaurantRouter);
-  app.use('api/payments', paymentRouter);
+  app.use('/api/payments', paymentRouter);
 
   //Auth
   app.use('/auth/local',authLocalRouter);
