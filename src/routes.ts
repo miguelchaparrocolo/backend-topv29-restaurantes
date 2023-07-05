@@ -10,6 +10,7 @@ import pedidoRouter from './api/pedido';
 import restaurantRouter from './api/restaurant';
 import userRouter from './api/user';
 import authLocalRouter from './auth/local';
+import paymentRouter from './api/payment';
 
 function routes(app: Application) {
 
@@ -23,6 +24,7 @@ function routes(app: Application) {
   app.use('/api/detail', detailRouter);
   app.use('/api/pedido', pedidoRouter);
   app.use('/api/restaurants', restaurantRouter);
+  app.use('api/payments', paymentRouter);
 
   //Auth
   app.use('/auth/local',authLocalRouter);

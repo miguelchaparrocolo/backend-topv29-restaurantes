@@ -32,6 +32,9 @@ export async function getRestaurantById(id: string) {
     where: {
       id,
     },
+    include: {
+      food: true,
+    },
 
   });
     return restaurant;

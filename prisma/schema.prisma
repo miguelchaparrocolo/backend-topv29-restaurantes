@@ -114,3 +114,8 @@ model Reviews {
   comment   String
   createdAt DateTime @default(now())
 }
+
+model Payments {
+  id String @id @default(cuid())
+  
+}
