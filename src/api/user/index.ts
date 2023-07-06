@@ -13,7 +13,7 @@ import {
 
 const router = Router();
 
-// /api/users -> GET
+// /api/users -> GET -- se quita los permios por el momento !
 router.get('/', getAllUserHandler);
 
 // /api/users -> POST
