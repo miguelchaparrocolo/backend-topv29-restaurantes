@@ -14,7 +14,7 @@ import {
 const router = Router();
 
 // /api/users -> GET
-router.get('/', isAuthenticated,hasRole(['ADMIN']), getAllUserHandler);
+router.get('/', getAllUserHandler);
 
 // /api/users -> POST
 router.post('/', createUserHandler);
