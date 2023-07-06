@@ -4,7 +4,6 @@ This is the backend repository of RICA restaurants
 
 ## Description
 the credential to use the backend is:
-- DATABASE_URL="postgres://mikelll:IRNYoid981l8lNHAROjdbo6orjMD32NP@dpg-ci0sme02qv21rs6oq5b0-a.ohio-postgres.render.com/backendrestaurants"
 - ask to owner to see the render server
 
 ## How to use

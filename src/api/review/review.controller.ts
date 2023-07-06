@@ -1,30 +1,30 @@
 import { Request, Response, NextFunction } from 'express';
 
 import {
-  getAllCities,
-  getCityById,
-  createCity,
-  updateCityById,
-  deleteCityById,
-} from './city.service';
+  getAllReviews,
+  getReviewById,
+  createReview,
+  updateReviewById,
+  deleteReviewById,
+} from './review.service';
 
-export async function getAllCitiesHandler(req: Request, res: Response) {
-  const posts = await getAllCities();
+export async function getAllReviewsHandler(req: Request, res: Response) {
+  const posts = await getAllReviews();
 
   return res.json(posts);
 }
 
-export async function getCityByIdHandler(
+export async function getReviewByIdHandler(
   req: Request,
   res: Response,
   next: NextFunction
 ) {
   const { id } = req.params;
   try {
-    const post = await getCityById(id);
+    const post = await getReviewById(id);
 
     if (!post) {
-      return res.status(404).json({ message: 'City not found' });
+      return res.status(404).json({ message: 'Review not found' });
     }
 
     return res.json(post);
@@ -33,7 +33,7 @@ export async function getCityByIdHandler(
   }
 }
 
-export async function createCityHandler(
+export async function createReviewsHandler(
   req: Request,
   res: Response,
   next: NextFunction
@@ -41,7 +41,7 @@ export async function createCityHandler(
   const data = req.body;
 
   try {
-    const review = await createCity(data);
+    const review = await createReview(data);
 
     return res.json(review);
   } catch (error) {
@@ -49,7 +49,7 @@ export async function createCityHandler(
   }
 }
 
-export async function updateCityByIdHandler(
+export async function updateReviewByIdHandler(
   req: Request,
   res: Response,
   next: NextFunction
@@ -58,7 +58,7 @@ export async function updateCityByIdHandler(
   const data = req.body;
 
   try {
-    const post = await updateCityById(id, data);
+    const post = await updateReviewById(id, data);
 
     return res.json(post);
   } catch (error) {
@@ -66,7 +66,7 @@ export async function updateCityByIdHandler(
   }
 }
 
-export async function deleteCityByIdHandler(
+export async function deleteReviewByIdHandler(
   req: Request,
   res: Response,
   next: NextFunction
@@ -74,7 +74,7 @@ export async function deleteCityByIdHandler(
   const { id } = req.params;
 
   try {
-    await deleteCityById(id);
+    await deleteReviewById(id);
 
     return res.sendStatus(200);
   } catch (error) {

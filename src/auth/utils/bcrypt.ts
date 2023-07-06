@@ -21,7 +21,3 @@ export async function comparePassword(
 ) {
   return await bcrypt.compare(password, hashedPassword);
 }
-
-export function createHashToken(data: string) {
-  return crypto.createHash('sha256').update(data).digest('hex');
-}
