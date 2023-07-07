@@ -1,12 +1,8 @@
 import { Request, Response, NextFunction } from 'express';
 
-import { getUserByEmail,
-  getUserByToken,
-  updateUser }
-from '../../api/user/user.service';
+import { getUserByEmail } from '../../api/user/user.service';
 import { comparePassword } from '../utils/bcrypt';
 import { signToken } from '../auth.service';
-import { createAuthResponse } from './local.services';
 
 export async function loginHandler(req: Request, res: Response) {
   const { email, password } = req.body;
@@ -43,45 +39,10 @@ export async function loginHandler(req: Request, res: Response) {
       })),
 
     };
-
+    console.log(profile)
 
     return res.json({ token, profile });
   } catch (error) {
     console.log(error)
   }
-}
-
-export async function activateHandler(req: Request, res: Response) {
-  const { token } = req.params;
-
-  try {
-    const user = await getUserByToken(token);
-
-    if (!user) {
-      return res.status(404).json({
-        message: 'Invalid token',
-      });
-    }
-
-    if (user.passwordResetExpires) {
-      if (Date.now() > user.passwordResetExpires.getTime()) {
-        return res.status(400).json({
-          message: 'Token expired',
-        });
-      }
-    }
-
-    const data = {
-      ...user,
-      isActive: true,
-      passwordResetToken: null,
-      passwordResetExpires: null,
-    };
-
-    await updateUser(data);
-
-    const response = createAuthResponse(user);
-
-    return res.json(response);
-  } catch (error) {}
 }

@@ -1,6 +1,6 @@
 import { Router } from 'express';
 
-import { loginHandler, activateHandler } from './local.controller';
+import { loginHandler } from './local.controller';
 
 const router = Router();
 
@@ -9,8 +9,7 @@ router.post('/login', loginHandler);
 
 // change password
 // reset password
-// activate account -> /auth/local/activate/:token
-router.get('/activate/:token', activateHandler);
+// activate account
 // logout
 
 export default router;

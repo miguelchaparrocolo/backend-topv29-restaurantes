@@ -8,7 +8,7 @@ import {
   getUserById,
   updateUser,
 } from './user.service';
-import {sendMailSendGrid} from '../../utils/email'
+
 export async function getAllUserHandler(req: Request, res: Response) {
   const users = await getAllUser();
 
@@ -21,21 +21,7 @@ export async function createUserHandler(req: Request, res: Response) {
   try {
     const user = await createUser(data);
 
-     // Send email
-     const emailData = {
-      from: 'No reply <guialexander@gmail.com>',
-      to: user.email,
-      subject: 'Welcome to the Restaurants app',
-      templateId: 'd-0ceaa9a7f110459b8fa86121960b6890',
-      dynamicTemplateData: {
-        firstName: user.firstName,
-        lastName: user.lastName,
-        url: `${process.env.FRONTEND_URL}/Verify-account/${user.passwordResetToken}`,
-      },
-    };
-    sendMailSendGrid(emailData);
-
-    return res.status(201).json(user);
+    return res.json(user);
   } catch (error: any) {
     console.log(error);
   }
@@ -67,12 +53,12 @@ export async function deleteUserHandler(req: Request, res: Response) {
   }
 
    await deleteUser(id);
-   return res.status(200).json({
+  /* return res.status(200).json({
     message: 'Delete user',
-  });
+  });*/
 
 
-  //return res.json(user);
+  return res.json(user);
 }
 
 export async function updateUserHandler(req: Request, res: Response) {
