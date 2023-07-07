@@ -13,8 +13,8 @@ import {
 
 const router = Router();
 
-// /api/users -> GET
-router.get('/', isAuthenticated,hasRole(['ADMIN']), getAllUserHandler);
+// /api/users -> GET -- se quita los permios por el momento !
+router.get('/', getAllUserHandler);
 
 // /api/users -> POST
 router.post('/', createUserHandler);
