@@ -39,6 +39,7 @@ export async function getRestaurantById(id: string) {
     },
     include: {
       food: true,
+      gallery: true,
     },
 
   });
