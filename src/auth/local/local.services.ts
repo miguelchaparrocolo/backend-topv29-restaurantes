@@ -13,10 +13,14 @@ export function createAuthResponse(input: User) {
   const profile = {
     fullName: `${user.firstName} ${user.lastName}`,
     avatar: user.avatar,
+    roles: user.roles.map(({ role }) => ({
+    id: role.id,
+    name: role.name,
+    })),
 
 
   };
-  console.log(profile)
 
-  return { token, profile };
+
+  return ( { token, profile });
 }

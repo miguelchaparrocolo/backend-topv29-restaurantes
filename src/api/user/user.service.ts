@@ -18,16 +18,30 @@ export async function createUser(input: User) {
   const hashedPassword = await hashPassword(input.password);
   const expiresIn = Date.now() + 3_600_000 * 24; // 24 hours
 
-  const data = {
+  /*const data = {
     ...input,
     password: hashedPassword,
     passwordResetToken: createHashToken(input.email),
     passwordResetExpires: new Date(expiresIn), // 24 hours
-  };
+  };*/
 
 
   const user = await prisma.user.create({
-    data,
+    data:{
+      firstName: input.firstName,
+      lastName: input.lastName,
+      email: input.email,
+      avatar: input.avatar,
+      password: hashedPassword,
+      passwordResetToken: createHashToken(input.email),
+      passwordResetExpires: new Date(expiresIn), // 24 hours
+
+        roles:{
+        create:[{
+          roleId:'clj0jwc4f0002npd8d1s5gtfv',
+        }]
+      }
+    }
   });
 
   return user;

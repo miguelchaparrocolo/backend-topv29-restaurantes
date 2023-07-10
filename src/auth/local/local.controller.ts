@@ -83,7 +83,8 @@ export async function activateHandler(req: Request, res: Response) {
     await updateUser(data);
 
     const response = createAuthResponse(user);
+    console.log(response)
 
-    return res.json(response);
+    return res.status(200).json(response);
   } catch (error) {}
 }
