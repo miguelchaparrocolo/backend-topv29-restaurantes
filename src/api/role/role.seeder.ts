@@ -1,18 +1,18 @@
 export const roleSeeder = [
     {
-        id : 'clj0jvzke0000npd8j9z3b5yc',
+        id : 'ddfgrtfgdfgdfgdfgdfgrtyrtyxcvxctrADMIN',
         name: 'ADMIN'
     },
     {
-        id : 'clj0jwc4f0002npd8d1s5gtfv',
+        id : 'aacljdfgfd0jwc4f0002npd8xcvd1s5gtfv',
         name: 'CUSTOMER'
     },
     {
-        id : 'clj0jy2fh0000np9gf2akvo3j',
+        id : 'adminresclj0jy2gdfgfh0000np9gf2vxcvakvo3j',
         name: 'ADMINRESTAURANT'
     },
     {
-        id: 'cljil2zos0003npm0q6tliuxw',
+        id: 'cuscljil2zos0003npm0q6tliuxxcvw',
         name: 'CUSTUMERTEST'
     },
 

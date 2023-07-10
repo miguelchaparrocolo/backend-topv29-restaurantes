@@ -1,4 +1,4 @@
-//import {foodsSeeder} from '../src/api/food/food.sedder';
+//import { categorysSeeder } from '../category/category.seeder';
 
 export const restaurantsSeeder = [
 
@@ -11,6 +11,7 @@ export const restaurantsSeeder = [
         address :  'Cra. 34b #134-75',
         rating  :  '4.5',
         logo :     'https://res.cloudinary.com/dqrtsgiru/image/upload/v1688086359/clod_restaurants/Mexican_sabor_logo_snjt7e.png' ,
+
 
     },
 
@@ -90,27 +91,5 @@ export const restaurantsSeeder = [
 
 
     ];
-
-
-    /*export const restaurantsByFoods = [
-        // restaurant 0 ->
-        {
-        restaurantsId : restaurantsSeeder[0].id,
-        foodId: foodsSeeder[0].id,
-
-        },
-        // restaurant 0 ->
-        {
-        restaurantsId : restaurantsSeeder[0].id,
-        foodId: foodsSeeder[1].id,
-        },
-        // restaurant 0 ->
-        {
-        restaurantsId : restaurantsSeeder[0].id,
-        foodId: foodsSeeder[2].id,
-        },
-
-
-      ];*/
 
 

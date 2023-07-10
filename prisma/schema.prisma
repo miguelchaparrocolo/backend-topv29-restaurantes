@@ -39,6 +39,13 @@ model Foods {
   restaurantsId String?
 }
 
+model Gallery {
+  id            String       @id @default(cuid())
+  name          String
+  Restaurants   Restaurants? @relation(fields: [restaurantsId], references: [id])
+  restaurantsId String?
+}
+
 model Restaurants {
   id           String      @id @default(cuid())
   name         String
@@ -50,6 +57,7 @@ model Restaurants {
   Categories   Categories? @relation(fields: [categoriesId], references: [id])
   categoriesId String?
   food         Foods[]
+  gallery      Gallery[]
 }
 
 model Categories {
@@ -116,12 +124,12 @@ model Reviews {
 }
 
 model Payments {
-  id String @id @default(cuid())
-  cardBrand String
-  cardNumber String
-  cardExpMonth String
-  cardExpYear String
-  cardCvc String
+  id             String  @id @default(cuid())
+  cardBrand      String
+  cardNumber     String
+  cardExpMonth   String
+  cardExpYear    String
+  cardCvc        String
   cardPostalCode String
-  userId String?
+  userId         String?
 }
