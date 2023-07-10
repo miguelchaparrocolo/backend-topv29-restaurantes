@@ -45,6 +45,8 @@ export const userSeeder = [
     isActive: true,
     avatar: 'https://picsum.photos/200',
 
+
+
 },
 
 ]

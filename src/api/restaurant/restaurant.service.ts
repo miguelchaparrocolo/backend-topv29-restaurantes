@@ -20,9 +20,14 @@ export async function getAllRestaurants() {
         name:true
       }
 
-     }
+     },
+     gallery:{
+      select:{
+        name:true
+      }
 
     }
+  }
   });
   return restaurants
 }

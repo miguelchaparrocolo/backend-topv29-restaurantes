@@ -4,6 +4,7 @@ import {userSeeder,userByRoleSeeder} from '../src/api/user/user.seeder';
 import {restaurantsSeeder} from '../src/api/restaurant/restaurant.seeder';
 import {categorysSeeder} from '../src/api/category/category.seeder';
 import {foodsSeeder} from '../src/api/food/food.sedder';
+import {gallerySeeder} from '../src/api/gallery/gallery.seeder';
 
 const prisma = new PrismaClient();
 
@@ -17,32 +18,40 @@ async function main (){
     data: userSeeder,
     skipDuplicates: true,
 
+
     });
 
     const createUsersByRole = await prisma.userRole.createMany({
         data: userByRoleSeeder,
         skipDuplicates: true,
+
     });
 
     const createRestaurants = await prisma.restaurants.createMany({
     data: restaurantsSeeder,
-    skipDuplicates :true,
+    skipDuplicates: true,
+
     });
 
     const createCategorys = await prisma.categories.createMany({
         data: categorysSeeder,
-        skipDuplicates :true,
+        skipDuplicates: true,
+
         });
 
     const createFoods = await prisma.foods.createMany({
         data: foodsSeeder,
-        skipDuplicates :true,
+        skipDuplicates: true,
+
         });
 
-    /*const createRestaurantsByFood = await prisma.restaurants.createMany({
-        data: restaurantsByFoods,
-        skipDuplicates :true,
-        });*/
+    const createGallery = await prisma.gallery.createMany({
+            data: gallerySeeder,
+            skipDuplicates: true,
+
+            });
+
+
 
 
     console.log({
@@ -52,6 +61,7 @@ async function main (){
         createRestaurants,
         createCategorys,
         createFoods,
+        createGallery,
     });
 
 }
