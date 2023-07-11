@@ -84,6 +84,7 @@ export async function activateHandler(req: Request, res: Response) {
 
     await updateUser(data);
 
+
     const response = createAuthResponse(user);
     console.log(response)
 
