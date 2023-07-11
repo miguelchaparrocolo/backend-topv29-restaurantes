@@ -74,32 +74,51 @@ export async function getUserByEmail(email: string) {
 
 
 export async function getUserByToken(token: string) {
+  try{
   const user = await prisma.user.findFirst({
-    where: {
+      where: {
       passwordResetToken: token,
-      // passwordResetExpires: {
-      //   lte: new Date(),
-      // },
+    },
+
+
+    include: {
+      roles:{
+        select:{
+          role: {
+            select:{
+              id:true,
+              name:true,
+              }
+            }
+          }
+        }
+
     },
 
   });
 
   return user;
+
+}catch(error){
+  console.log(error)
+}
 };
+
 
 export async function deleteUser(id: string) {
   const user = await prisma.user.delete({
     where: {
       id,
     },
-    include: {
+    /*include: {
       roles:true
-     },
+     },*/
   });
   return user;
 }
 
 export async function updateUser(data: User) {
+  try{
   const user = await prisma.user.update({
     where: {
       id: data.id,
@@ -108,4 +127,7 @@ export async function updateUser(data: User) {
   });
   console.log(data)
   return user;
+}catch(error){
+  console.log(error)
+}
 }
