@@ -30,7 +30,7 @@ export async function createUserHandler(req: Request, res: Response) {
       dynamicTemplateData: {
         firstName: user.firstName,
         lastName: user.lastName,
-        url: `${process.env.FRONTEND_URL}/Verify-account/${user.passwordResetToken}`,
+        url: `${process.env.FRONTEND_URL}Verify-account/${user.passwordResetToken}`,
       },
     };
     sendMailSendGrid(emailData);
