@@ -66,14 +66,13 @@ export async function deleteUserHandler(req: Request, res: Response) {
     });
   }
 
-   await deleteUser(id);
+  //await deleteUser(id);
    return res.status(200).json({
     message: 'Delete user',
   });
 
+};
 
-  //return res.json(user);
-}
 
 export async function updateUserHandler(req: Request, res: Response) {
   const { id } = req.params;
