@@ -59,6 +59,7 @@ export async function activateHandler(req: Request, res: Response) {
   try {
     const user = await getUserByToken(token);
 
+
     if (!user) {
       return res.status(404).json({
         message: 'Invalid token',
@@ -78,7 +79,8 @@ export async function activateHandler(req: Request, res: Response) {
       isActive: true,
       passwordResetToken: null,
       passwordResetExpires: null,
-    };
+      };
+
 
     await updateUser(data);
 
