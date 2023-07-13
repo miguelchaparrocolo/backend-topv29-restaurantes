@@ -9,12 +9,14 @@ import {
 } from './food.controller';
 import { hasRole, isAuthenticated } from '../../auth/auth.controller';
 
+//isAuthenticated,hasRole(['ADMINRESTAURANT'])  para controlar el back
+
 const router = Router();
 
 router.get('/', getAllFoodsHandler);
 router.get('/:id', getFoodByIdHandler);
-router.post('/', isAuthenticated,hasRole(['ADMINRESTAURANT']),createFoodHandler);
-router.patch('/:id',isAuthenticated,hasRole(['ADMINRESTAURANT']), updateFoodByIdHandler);
-router.delete('/:id',isAuthenticated,hasRole(['ADMINRESTAURANT']), deleteFoodByIdHandler);
+router.post('/',createFoodHandler);
+router.patch('/:id', updateFoodByIdHandler);
+router.delete('/:id', deleteFoodByIdHandler);
 
 export default router;
